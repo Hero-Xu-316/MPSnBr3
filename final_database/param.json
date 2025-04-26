@@ -1,0 +1,110 @@
+{
+    "type_map": ["Sn","Br","C","P","H"],
+    "mass_map": [118.71,79.91,12,30.97,1],
+    "init_data_prefix": "../train-data/",
+    "init_data_sys":[ 
+      "data1"],
+    "sys_configs_prefix": "./",
+    "sys_configs": [["POSCAR-01"],["POSCAR-02"]],
+    "_comment": " that's all ",
+    "numb_models": 4,
+    "default_training_param": {
+        "model": {
+        "descriptor": {
+                "type": "se_e2_a",
+                "sel": [
+                    20,
+                    50,
+                    20,
+                    20,
+                    80], 
+                "rcut_smth": 0.5,
+                "rcut": 7.0,
+                "neuron": [
+                    25,
+                    50,
+                    100
+                ],
+                "resnet_dt": false,
+                "precision": "float32",
+                "axis_neuron": 15,
+                "seed": 1
+            },
+            "fitting_net": {
+                "neuron": [
+                    240,
+                    240,
+                    240
+                ],
+                "resnet_dt": false,
+                "precision": "float32",
+                "seed": 1
+            }
+        },
+        "learning_rate": {
+            "type": "exp",
+            "start_lr": 0.001,
+            "stop_lr": 4.0e-08,
+            "decay_steps": 5000
+        },
+        "loss": {
+            "start_pref_e": 0.01,
+            "limit_pref_e": 1,
+            "start_pref_f": 100,
+            "limit_pref_f": 1,
+            "start_pref_v": 0.01,
+            "limit_pref_v": 1
+        },
+   
+        "training": {
+            "_set_prefix": "set",
+            "stop_batch": 1000000,
+            "_batch_size": 1,
+            "seed":1, 
+            "disp_file": "lcurve.out",
+            "disp_freq": 100,
+            "save_freq": 10000,
+            "save_ckpt": "model.ckpt",
+            "disp_training": true,
+            "time_training": true,
+            "profiling": false,
+            "profiling_file": "timeline.json",
+            "_comment": "that's all"
+        }
+    },
+    "dp_compress": true,
+    "model_devi_dt": 0.001,
+    "model_devi_skip": 0,
+    "model_devi_taut":0.01,
+    "model_devi_taup":0.05,
+    "model_devi_f_trust_lo": 0.08,
+    "model_devi_f_trust_hi": 0.2,
+    "model_devi_v_trust_lo": 0.01,
+    "model_devi_v_trust_hi": 0.05, 
+    "model_devi_clean_traj": 2,
+    "model_devi_jobs": [
+        {"sys_idx": [0,1],"temps": [100,200,300,400,500,600,700,800],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 5000,"ensemble": "npt-a","_idx": "01"},
+        {"sys_idx": [0,1],"temps": [100,200,300,400,500,600,700,800],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 10000,"ensemble": "npt-a","_idx": "02"},
+        {"sys_idx": [0,1],"temps": [100,200,300,400,500,600,700,800],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 20000,"ensemble": "npt-a","_idx": "03"},
+{"sys_idx": [0,1],"temps": [100,200,300,400,500,600],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 5000,"ensemble": "npt-a","_idx": "04"},
+{"sys_idx": [0,1],"temps": [100,200,300,400,500,600],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 10000,"ensemble": "npt-a","_idx": "05"},
+{"sys_idx": [0,1],"temps": [100,200,300,400,500,600],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 15000,"ensemble": "npt-a","_idx": "06"},
+{"sys_idx": [0,1],"temps": [100,200,300,400,500,550],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 20000,"ensemble": "npt-a","_idx": "07"},
+{"sys_idx": [0,1],"temps": [100,200,300,400,500,550],"press": [1.0,2000,4000,6000,8000,10000],"trj_freq": 10,"nsteps": 20000,"ensemble": "npt-a","_idx": "08"}
+],
+   "fp_style": "vasp",
+    "shuffle_poscar": false,
+    "fp_accurate_threshold":0.999,
+    "fp_accurate_soft_threshold":0.99,
+    "fp_task_max": 400,
+    "fp_task_min": 5,
+    "fp_pp_path": "./",
+    "fp_pp_files": [
+        "POTCAR_Sn",
+        "POTCAR_Br",
+        "POTCAR_C",
+        "POTCAR_P",
+        "POTCAR_H"
+    ],
+    "fp_incar": "./INCAR_vasp"
+}
